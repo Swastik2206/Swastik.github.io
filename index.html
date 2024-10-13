@@ -10,30 +10,39 @@
             height: 400px;
             width: 100%;
         }
+        #error-message {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h3>My Google Map</h3>
     <!-- The div element to hold the map -->
     <div id="map"></div>
+    <div id="error-message"></div>
 
     <script>
         // Initialize and add the map
         function initMap() {
-            // The location coordinates (your specific coordinates)
-            const location = { lat: 21.12294919421211, lng: 79.05153663442532 };
+            try {
+                // The location coordinates (your specific coordinates)
+                const location = { lat: 21.12294919421211, lng: 79.05153663442532 };
 
-            // The map, centered at the location
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,  // Adjust zoom level
-                center: location,
-            });
+                // The map, centered at the location
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 10,  // Adjust zoom level
+                    center: location,
+                });
 
-            // The marker, positioned at the location
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-            });
+                // The marker, positioned at the location
+                const marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                });
+            } catch (error) {
+                document.getElementById("error-message").innerText = "Error loading Google Map: " + error.message;
+            }
         }
     </script>
 
