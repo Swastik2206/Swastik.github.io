@@ -1,54 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Map with Marker</title>
+    <title>Google Maps Integration</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmUoMGb3kvB9nHWQS4bPf-QS_MjWNvKkY"></script>
     <style>
-        /* Set the size of the map */
         #map {
             height: 400px;
             width: 100%;
         }
-        #error-message {
-            color: red;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <h3>My Google Map</h3>
-    <!-- The div element to hold the map -->
+    <h1>Google Maps Integration</h1>
     <div id="map"></div>
-    <div id="error-message"></div>
-
     <script>
-        // Initialize and add the map
         function initMap() {
-            try {
-                // The location coordinates (your specific coordinates)
-                const location = { lat: 21.12294919421211, lng: 79.05153663442532 };
-
-                // The map, centered at the location
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 10,  // Adjust zoom level
-                    center: location,
-                });
-
-                // The marker, positioned at the location
-                const marker = new google.maps.Marker({
-                    position: location,
-                    map: map,
-                });
-            } catch (error) {
-                document.getElementById("error-message").innerText = "Error loading Google Map: " + error.message;
-            }
+            const vnit = { lat: 21.1232, lng: 79.0515 }; // Set coordinates for VNIT
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: vnit,
+            });
+            const marker = new google.maps.Marker({
+                position: vnit,
+                map: map,
+                title: "VNIT",
+            });
         }
-    </script>
 
-    <!-- Load the Google Maps JavaScript API with your API key -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AlzaSyZC1e_4JHmkaVcOBq_7zHmQyNAldHkgxaV&callback=initMap">
+        // Initialize the map
+        window.onload = initMap;
     </script>
 </body>
 </html>
